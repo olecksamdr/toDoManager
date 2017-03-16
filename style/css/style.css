@@ -2,3 +2,9 @@
 	width: 500px;
 	margin: 50px auto;
 }
+.panel-body{
+	padding: 0;
+}
+.list-group{
+	margin-bottom: 0;
+}
