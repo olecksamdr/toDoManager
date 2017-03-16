@@ -1,3 +1,8 @@
+body{
+	margin: 0 auto;
+	width: 700px;
+	background-image: url(../bg.png);
+}
 .lists, form, .tasks{
 	width: 500px;
 	margin: 50px auto;
