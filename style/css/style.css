@@ -1,8 +1,8 @@
-.lists, form{
+.lists, form, .tasks{
 	width: 500px;
 	margin: 50px auto;
 }
-.panel-body{
+.lists .panel-body{
 	padding: 0;
 }
 .list-group{
