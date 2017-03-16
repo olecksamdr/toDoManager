@@ -1,0 +1,72 @@
+<?php
+	require_once "/sys/init.php";
+	// require_once "/sys/initDataFromDB";
+	if (isset($_GET['act']) && $_GET['act'] != "") {
+		$action = $_GET['act'];
+		switch($action){
+			case 'delete':
+				$actionToUser = "Deleting";
+				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
+					echo "<h1><a href='./'>toDo Lists Manager</a><small>/Error with actions</small></h1>";
+					exit("<div class='alert alert-danger' role='alert'>
+						<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
+						<span class='sr-only'>Error:</span>
+						Please, select a list to deleting
+						</div>");
+				} else {
+					$listId = $_GET['listId'];
+					$actionToUser = "Deleting list";
+					$deleting = Lists::delete($listId);
+					if ($deleting) {
+						$msg = "Deleting successful!";
+					} else {
+						$err = "Deleting error!";
+					}
+				}
+				break;
+			case 'add':
+				$caption = $_POST['caption'];
+
+				$creating = Lists::create($caption);
+				if ($creating) {
+					$actionToUser = "Creating new list";
+					$msg = "Creating successful!";
+				} else {
+					$err = "Creating error!";
+				}
+				break;
+			case 'edit':
+				$editing = Lists::edit($listId, $title, $description);
+				if ($editing) {
+					$actionToUser = "Editing";
+					$msg = "Editing successful!";
+				} else {
+					$err = "Editing error!";
+				}
+				break;
+		}
+	} elseif(!isset($_GET['act']) || $_GET['act'] == "") {
+		$actionToUser = "Error with actions";
+		$err = "Please, select action!";
+	}
+?>
+<h1><a href='./'>toDo Lists Manager</a><small>/<?= $actionToUser?></small></h1>
+<?php
+if (isset($err)) {
+?>
+	<div class='alert alert-danger' role='alert'>
+	<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
+	<span class='sr-only'>Error:</span>
+	<?= $err ?>
+	</div>
+<?php
+} else if(isset($msg)) {
+?>
+	<div class="alert alert-success" role="alert">
+	<?= $msg ?>
+	</div>
+<?php
+}
+?>
+</body>
+</html>

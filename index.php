@@ -1,8 +1,7 @@
 <?php 
 	require_once "/sys/init.php";
-	// $db->query("INSERT INTO `tasks` (`listId`, `title`, `description`) VALUES ('1', 'Test', 'Test descr')");
 ?>
-<h1>toDo Lists Manager<small>/</small></h1>
+<h1>toDo Lists Manager<small>/</small><a style="float: right;" class="btn btn-primary btn-lg" href="creations.php?type=list" role="button">Add new list</a></h1>
 <div class="lists">	
   <div class="panel panel-default">
   	<div class="panel-heading">
@@ -18,6 +17,7 @@
 		  <a href="viewList.php?listId=<?= $assocListArray['id'] ?>" class="list-group-item">
 		    <span class="badge"><?= $tasksCounter->rowCount() ?></span>
 		    <?= $assocListArray['caption'] ?>
+		    <a class="btn btn-default btn-lg" href="actionsList.php?act=delete&listId=<?= $assocListArray['id'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
     	  </a>
 		<?php
 		}

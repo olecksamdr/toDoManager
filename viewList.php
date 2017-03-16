@@ -1,6 +1,6 @@
 <?php 
 	require_once "/sys/init.php";
-	if (!isset($_GET['listId'])) {
+	if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 		$err = "Please, select a list of tasks!";
 		$title = "Error";
 	} else {
@@ -9,15 +9,16 @@
 		$title = "Tasks from ".$dataFromList['caption'];
 	}
 ?>
-<h1>toDo Lists Manager<small>/Tasks from <?= $dataFromList['caption']?></small></h1>
 	<?php 
 	  if (isset($err)) {
 	?>
+	<h1><a href='./'>toDo Lists Manager</a><small>/Error</small></h1>
 	<div class="alert alert-danger" role="alert">
 		<?= $err ?>
 	</div>
 	<?php
 	  } else {
+	  	echo "<h1><a href='./'>toDo Lists Manager</a><small>/Tasks from ".$dataFromList['caption']."</small><a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task' role='button'>Add new task</a></h1>";
 	  	echo "<div class='tasks'>";
 	  	while ($assocTasksArray = $task->fetch()) { 
 	?>
