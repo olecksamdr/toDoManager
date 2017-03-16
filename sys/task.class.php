@@ -1,18 +1,18 @@
 <?php
 class Task {
-	function create(){
-		$sql = func_get_arg(0);
-		$res = $db->query($sql);
+	static function create($listId, $title, $description){
+		$sql = "INSERT INTO `tasks` (`listId`, `title`, `description`) VALUES ('$listId','$title', '$description')";
+		$res = DB::connect()->query($sql);
 		return $res;
 	}
-	function edit(){
-		$sql = func_get_arg(0);
-		$res = $db->query($sql);
+	static function edit($taskId, $title, $description){
+		$sql = "UPDATE `tasks` SET `title` = '$title', `description` = '$description' WHERE `id` = '$taskId'";
+		$res = DB::connect()->query($sql);
 		return $res;
 	}
-	function delete(){
-		$sql = func_get_arg(0);
-		$res = $db->query($sql);
+	static function delete($taskId){
+		$sql = "DELETE FROM `tasks` WHERE `id` = '$taskId' LIMIT 1";
+		$res = DB::connect()->query($sql);
 		return $res;
 	}
 }

@@ -16,7 +16,7 @@
 	} elseif($type == 'task') {
 ?>
 	<h1><a href='./'>toDo Lists Manager</a><small>/Add new task</small></h1>
-	<form action="actionsTask.php?act=add">
+	<form action="actionsTask.php?act=add&listId=<?=$_GET['listId']?>" method="POST">
 	  <div class="form-group">
 	    <input type="text" name="title" class="form-control" placeholder="Task caption">
 	  </div>
