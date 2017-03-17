@@ -37,10 +37,10 @@
 				}
 				break;
 			case 'edit':
-				$listId = $_GET['listId'];
+				$taskId = $_GET['taskId'];
 				$title = $_POST['title'];
 				$description = $_POST['description'];
-				
+
 				$editing = Task::edit($taskId, $title, $description);
 				if ($editing) {
 					$actionToUser = "Editing";

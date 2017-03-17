@@ -28,11 +28,18 @@
   	    	</div>
   	      <div class="panel-body">
 			<?= $assocTasksArray['description']?>
+			<div class="actions">
+			  <a href="creations.php?type=editTask&taskId=<?= $assocTasksArray['id']?>">Edit</a>
+			  <a href="actionsTask.php?act=delete&taskId=<?= $assocTasksArray['id']?>">Delete</a>
+			</div>
   	      </div>
  	      </div>
 	<?php
 	    }
 	  echo "</div>";
+	  if (!$task->rowCount()) {
+	  	echo "<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>";
+	  }
 	  }
 	?>
 </body>

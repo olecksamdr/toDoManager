@@ -26,6 +26,19 @@
 	  <button type="submit" class="btn btn-default">Create task</button>
 	</form>
 <?php
+	} elseif($type == 'editTask'){
+?>
+	<h1><a href='./'>toDo Lists Manager</a><small>/Task editions</small></h1>
+	<form action="actionsTask.php?act=edit&taskId=<?=$_GET['taskId']?>" method="POST">
+	  <div class="form-group">
+	    <input type="text" name="title" class="form-control" placeholder="Task caption">
+	  </div>
+	  <div class="form-group">
+	    <textarea name="description" class="form-control" rows="3" placeholder="Task description"></textarea>
+	  </div>
+	  <button type="submit" class="btn btn-default">Edit task</button>
+	</form>
+<?php
 	}
 ?>
 </body>
