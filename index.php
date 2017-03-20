@@ -13,8 +13,9 @@
 	  <div class="list-group">
 		<?php 
 		while ($assocListArray = $lists->fetch()) { 
-			$tasksCounterQuery = "SELECT * FROM `tasks` WHERE `listId` = '".$assocListArray['id']."'";
-			$tasksCounter = $db->query($tasksCounterQuery);
+			$tasksCounterQuery = "SELECT * FROM `tasks` WHERE `listId` = ?";
+			$tasksCounter = $db->prepare($tasksCounterQuery);
+			$tasksCounter->execute(Array($assocListArray['id']));
 			?>
 		  <a href="viewList.php?listId=<?= $assocListArray['id'] ?>" class="list-group-item">
 		    <span class="badge"><?= $tasksCounter->rowCount() ?></span>
