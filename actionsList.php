@@ -7,11 +7,13 @@
 				$actionToUser = "Deleting";
 				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 					echo "<h1><a href='./'>toDo Lists Manager</a><small>/Error with actions</small></h1>";
-					exit("<div class='alert alert-danger' role='alert'>
+					echo "<div class='alert alert-danger' role='alert'>
 						<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 						<span class='sr-only'>Error:</span>
 						Please, select a list to deleting
-						</div>");
+						</div>";
+					sleep(5);
+					header("Location: ".$_SERVER['HTTP_REFERER']);
 				} else {
 					$listId = $_GET['listId'];
 					$actionToUser = "Deleting list";

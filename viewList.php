@@ -35,7 +35,7 @@
   	      </div>
  	      </div>
 	<?php
-	    }
+	  }
 	  echo "</div>";
 	  if (!$task->rowCount()) {
 	  	echo "<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>";

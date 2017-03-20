@@ -7,11 +7,11 @@
 				$actionToUser = "Deleting";
 				if (!isset($_GET['taskId']) || $_GET['taskId'] == "") {
 					echo "<h1><a href='./'>toDo Lists Manager</a><small>/Error with actions</small></h1>";
-					exit("<div class='alert alert-danger' role='alert'>
+					echo "<div class='alert alert-danger' role='alert'>
 						<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 						<span class='sr-only'>Error:</span>
 						Please, select a task to deleting
-						</div>");
+						</div>";
 				} else {
 					$taskId = $_GET['taskId'];
 					$actionToUser = "Deleting task";
@@ -65,6 +65,7 @@ if (isset($err)) {
 	<span class='sr-only'>Error:</span>
 	<?= $err ?>
 	</div>
+
 <?php
 } else if(isset($msg)) {
 ?>
