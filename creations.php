@@ -8,7 +8,7 @@
 	<h1><a href='./'>toDo Lists Manager</a><small>/Add new list</small></h1>
 	<form action="actionsList.php?act=add" method="POST">
 	  <div class="form-group">
-	  	<input type="text" name="caption" class="form-control" placeholder="List caption">
+	  	<input required="required" type="text" name="caption" class="form-control" placeholder="List caption">
 	  </div>
 	  <button type="submit" class="btn btn-default">Create list</button>
 	</form>
@@ -18,7 +18,7 @@
 	<h1><a href='./'>toDo Lists Manager</a><small>/Add new task</small></h1>
 	<form action="actionsTask.php?act=add&listId=<?=$_GET['listId']?>" method="POST">
 	  <div class="form-group">
-	    <input type="text" name="title" class="form-control" placeholder="Task caption">
+	    <input required="required" type="text" name="title" class="form-control" placeholder="Task caption">
 	  </div>
 	  <div class="form-group">
 	    <textarea name="description" class="form-control" rows="3" placeholder="Task description"></textarea>
@@ -27,14 +27,16 @@
 	</form>
 <?php
 	} elseif($type == 'editTask'){
+	require_once "sys/initDataFromDB.php";
+	$task = $currentTask->fetch();
 ?>
-	<h1><a href='./'>toDo Lists Manager</a><small>/Task editions</small></h1>
+	<h1><a href='./'>toDo Lists Manager</a><small>/<a href="viewList.php?listId=<?= $task['listId']?>"><?= $task['title']?></a>/Edit</small></h1>
 	<form action="actionsTask.php?act=edit&taskId=<?=$_GET['taskId']?>" method="POST">
 	  <div class="form-group">
-	    <input type="text" name="title" class="form-control" placeholder="Task caption">
+	    <input required="required" type="text" name="title" class="form-control" placeholder="Task caption" value="<?= $task['title']?>">
 	  </div>
 	  <div class="form-group">
-	    <textarea name="description" class="form-control" rows="3" placeholder="Task description"></textarea>
+	    <textarea name="description" class="form-control" rows="3" placeholder="Task description" value="<?= $task['description']?>"></textarea>
 	  </div>
 	  <button type="submit" class="btn btn-default">Edit task</button>
 	</form>

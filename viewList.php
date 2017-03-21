@@ -18,7 +18,7 @@
 	  </div>
 	<?php
 	  } else {
-	  	echo "<h1><a href='./'>toDo Lists Manager</a><small>/Tasks from ".$dataFromList['caption']."</small><a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=".$_GET['listId']."' role='button'>Add new task</a></h1>";
+	  	echo "<h1><a href='./'>toDo Lists Manager</a><small>/Tasks from \"".$dataFromList['caption']."\"</small><a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=".$_GET['listId']."' role='button'>Add new task</a></h1>";
 	  	echo "<div class='tasks'>";
 	  	while ($assocTasksArray = $task->fetch()) { 
 	?>

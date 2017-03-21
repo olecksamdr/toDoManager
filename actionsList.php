@@ -26,16 +26,20 @@
 				}
 				break;
 			case 'add':
-				$caption = $_POST['caption'];
-
-				$creating = Lists::create($caption);
-				if ($creating) {
-					$actionToUser = "Creating new list";
-					$msg = "Creating successful!";
+				if ($_POST['caption'] = "") {
+					$err = "List caption can`t be empty";
+					break;
 				} else {
-					$err = "Creating error!";
+					$caption = $_POST['caption'];
+					$creating = Lists::create($caption);
+					if ($creating) {
+						$actionToUser = "Creating new list";
+						$msg = "Creating successful!";
+					} else {
+						$err = "Creating error!";
+					}
+					break;
 				}
-				break;
 		}
 	} elseif(!isset($_GET['act']) || $_GET['act'] == "") {
 		$actionToUser = "Error with actions";
