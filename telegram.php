@@ -6,5 +6,6 @@
 
 	$arr = $sender->getUpdates();
 	
+	$userChatId = $arr['result'][0]['message']['from']['id'];
 	$sender->sendMessage($userChatId, "Test");
 ?>
