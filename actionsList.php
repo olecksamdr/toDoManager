@@ -26,7 +26,7 @@
 				}
 				break;
 			case 'add':
-				if ($_POST['caption'] = "") {
+				if ($_POST['caption'] == "") {
 					$err = "List caption can`t be empty";
 					break;
 				} else {
@@ -35,6 +35,11 @@
 					if ($creating) {
 						$actionToUser = "Creating new list";
 						$msg = "Creating successful!";
+						$thisList = "SELECT * FROM `tasks` WHERE `caption` = ? LIMIT 1";
+						$currentList = $db->prepare($thisList);
+						$currentList->execute(Array($caption));
+						$currentList = $currentList->fetch();
+						$sender->sendMessage(130561339, "You are create a new list");
 					} else {
 						$err = "Creating error!";
 					}

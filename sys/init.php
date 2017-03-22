@@ -5,6 +5,7 @@ require_once "settings.php";
 require_once "db.class.php";
 require_once "list.class.php";
 require_once "task.class.php";
+require_once "telegram.class.php";
 
 //trying connect to DB with cathcing errors
 try {
@@ -26,4 +27,8 @@ $lists  = $db->query($qForLists);
 //Get tasks by list ID;
 $qForTasks = "SELECT * FROM `tasks` WHERE `listId` = '1'";
 $tasks = $db->query($qForTasks);
+
+$sender = new Telegram();
+$sender->token = "227521073:AAHiaG6tlSQ5Ozc_p-hJ_joJISxK0gJHdKI";
+// $sender->sendMessage($userChatId, "Test");
 ?>
