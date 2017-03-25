@@ -13,11 +13,6 @@ body{
 .list-group{
 	margin-bottom: 0;
 }
-.btn-delete{
-	position: absolute;
-	margin: 0;
-	right: 20pc;
-}
 .actions{
 	position: relative;
 	float: right;
