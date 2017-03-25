@@ -18,3 +18,7 @@ body{
 	margin: 0;
 	right: 20pc;
 }
+.actions{
+	position: relative;
+	float: right;
+}

@@ -29,8 +29,8 @@
   	      <div class="panel-body">
 			<?= $assocTasksArray['description']?>
 			<div class="actions">
-			  <a href="creations.php?type=editTask&taskId=<?= $assocTasksArray['id']?>">Edit</a>
-			  <a href="actionsTask.php?act=delete&taskId=<?= $assocTasksArray['id']?>">Delete</a>
+			  <a href="creations.php?type=editTask&taskId=<?= $assocTasksArray['id']?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+			  <a href="actionsTask.php?act=delete&taskId=<?= $assocTasksArray['id']?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 			</div>
   	      </div>
  	      </div>
