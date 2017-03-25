@@ -6,40 +6,39 @@
 			case 'delete':
 				$actionToUser = "Deleting";
 				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
-					echo "<h1><a href='./'>toDo Lists Manager</a><small>/Error with actions</small></h1>";
-					echo "<div class='alert alert-danger' role='alert'>
-						<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-						<span class='sr-only'>Error:</span>
-						Please, select a list to deleting
-						</div>";
-					sleep(5);
-					header("Location: ".$_SERVER['HTTP_REFERER']);
+					$actionToUser = "Error with actions";
+					$err = "Please, select a list to deleting";
 				} else {
 					$listId = $_GET['listId'];
+					// $thisList = "SELECT * FROM `lists` WHERE `caption` = ? LIMIT 1";
+					// $currentList = $db->prepare($thisList);
+					// $currentList->execute(Array($listId));
+					// $currentList = $currentList->fetch();
 					$actionToUser = "Deleting list";
 					$deleting = Lists::delete($listId);
 					if ($deleting) {
-						$msg = "Deleting successful!";
+						$msg = "Deleting a list successful!";
+						$sender->sendMessage(130561339, "You are delete a list ");
 					} else {
 						$err = "Deleting error!";
 					}
 				}
 				break;
 			case 'add':
-				if ($_POST['caption'] == "") {
+				$caption = $_POST['caption'];
+				if ($caption === "") {
 					$err = "List caption can`t be empty";
 					break;
 				} else {
-					$caption = $_POST['caption'];
 					$creating = Lists::create($caption);
 					if ($creating) {
 						$actionToUser = "Creating new list";
-						$msg = "Creating successful!";
-						$thisList = "SELECT * FROM `tasks` WHERE `caption` = ? LIMIT 1";
+						$thisList = "SELECT * FROM `lists` WHERE `caption` = ? LIMIT 1";
 						$currentList = $db->prepare($thisList);
 						$currentList->execute(Array($caption));
 						$currentList = $currentList->fetch();
-						$sender->sendMessage(130561339, "You are create a new list");
+						$msg = "Creating a list ".$currentList['caption']." successful!";
+						$sender->sendMessage(130561339, "You are create a new list ".$currentList['caption']);
 					} else {
 						$err = "Creating error!";
 					}
