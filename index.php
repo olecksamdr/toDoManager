@@ -12,7 +12,8 @@
   	<div class="panel-body">
 	  <div class="list-group">
 		<?php 
-		while ($assocListArray = $lists->fetch()) { 
+		$userLists = $lists->getUserLists(1);
+		while ($assocListArray = $userLists->fetch()) { 
 			$tasksCounterQuery = "SELECT * FROM `tasks` WHERE `listId` = ?";
 			$tasksCounter = $db->prepare($tasksCounterQuery);
 			$tasksCounter->execute(Array($assocListArray['id']));
@@ -31,7 +32,7 @@
   </div>
 </div>
 <?php
-if (!$lists->rowCount()) {
+if (!$userLists->rowCount()) {
 	echo "<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>";
 }
 ?>
