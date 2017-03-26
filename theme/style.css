@@ -18,3 +18,9 @@ body{
 	float: right;
 	top: -19px;
 }
+.listDeleteBtn{
+    position: relative;
+    float: right;
+    left: 27px;
+    bottom: 29px;
+}
