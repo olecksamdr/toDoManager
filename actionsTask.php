@@ -1,17 +1,14 @@
 <?php
 	require_once "/sys/init.php";
+	require_once "sys/initDataFromDB.php";
 	if (isset($_GET['act']) && $_GET['act'] != "") {
 		$action = $_GET['act'];
 		switch($action){
 			case 'delete':
 				$actionToUser = "Deleting";
 				if (!isset($_GET['taskId']) || $_GET['taskId'] == "") {
-					echo "<h1><a href='./'>toDo Lists Manager</a><small>/Error with actions</small></h1>";
-					echo "<div class='alert alert-danger' role='alert'>
-						<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-						<span class='sr-only'>Error:</span>
-						Please, select a task to deleting
-						</div>";
+					$actionToUser = "Error with actions";
+					$err = "Please, select a list to deleting";
 				} else {
 					$taskId = $_GET['taskId'];
 					$actionToUser = "Deleting task";
@@ -31,7 +28,13 @@
 				$creating = Task::create($listId, $title, $description);
 				if ($creating) {
 					$actionToUser = "Creating new task";
-					$msg = "Creating successful!";
+					$thisTask = "SELECT * FROM `tasks` WHERE `title` = ? LIMIT 1";
+					$currentTask = $db->prepare($thisTask);
+					$currentTask->execute(Array($title));
+					$currentTask = $currentTask->fetch();
+					$msg = "Creating a list ".$currentTask['title']." successful!";
+					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
+						".$currentTask['description']);
 				} else {
 					$err = "Creating error!";
 				}
