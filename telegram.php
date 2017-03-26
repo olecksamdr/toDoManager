@@ -12,5 +12,6 @@
 	$params['parse_mode'] = 'HTML';
 	$params['disable_notification'] = true;
 
-	$sender->sendMessage($userChatId, 'Test http://www.example.com/', $params); //link sented withot <a></a> pares
+	$sender->sendMessage($userChatId, 'Test http://www.example.com/
+	test', $params); //link sented withot <a></a> pares
 ?>
