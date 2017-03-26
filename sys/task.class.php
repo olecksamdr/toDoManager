@@ -1,5 +1,10 @@
 <?php
 class Task {
+	static function getTasksFromList($listId){
+	$qForTask = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? ORDER BY `id` DESC";
+	$task = $db->prepare($qForTask);
+	return $task->execute(Array($listId));
+	}
 	static function create($listId, $title, $description){
 		$sql = "INSERT INTO `tasks` (`listId`, `title`, `description`) VALUES (?, ?, ?)";
 		$res = DB::connect()->prepare($sql);
