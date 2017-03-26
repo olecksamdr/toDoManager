@@ -16,4 +16,5 @@ body{
 .actions{
 	position: relative;
 	float: right;
+	top: -19px;
 }
