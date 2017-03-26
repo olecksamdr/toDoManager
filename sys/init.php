@@ -30,5 +30,4 @@ $tasks = $db->query($qForTasks);
 
 $sender = new Telegram();
 $sender->token = "227521073:AAHiaG6tlSQ5Ozc_p-hJ_joJISxK0gJHdKI";
-// $sender->sendMessage($userChatId, "Test");
 ?>

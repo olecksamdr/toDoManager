@@ -1,5 +1,6 @@
 <?php
-	require_once "/sys/init.php";
+	require_once "sys/init.php";
+	require_once "sys/initDataFromDB.php";
 	if (isset($_GET['act']) && $_GET['act'] != "") {
 		$action = $_GET['act'];
 		switch($action){
@@ -18,7 +19,7 @@
 					$deleting = Lists::delete($listId);
 					if ($deleting) {
 						$msg = "Deleting a list successful!";
-						$sender->sendMessage(130561339, "You are delete a list ");
+						$sender->sendMessage($user['chatId'], "You are delete a list ");
 					} else {
 						$err = "Deleting error!";
 					}
@@ -38,7 +39,7 @@
 						$currentList->execute(Array($caption));
 						$currentList = $currentList->fetch();
 						$msg = "Creating a list ".$currentList['caption']." successful!";
-						$sender->sendMessage(130561339, "You are create a new list ".$currentList['caption']);
+						$sender->sendMessage($user['chatId'], "You are create a new list ".$currentList['caption']);
 					} else {
 						$err = "Creating error!";
 					}

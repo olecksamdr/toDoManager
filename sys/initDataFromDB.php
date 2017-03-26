@@ -22,4 +22,9 @@ if (isset($_GET['listId'])) {
 	$list->execute(Array($listId));
 	$dataFromList = $list->fetch();
 }
+//Get data about user
+$qForUser = "SELECT * FROM `users` WHERE `id` = ?";
+$userPrepare = $db->prepare($qForUser);
+$userPrepare->execute(Array(1));
+$user = $userPrepare->fetch();
 ?>
