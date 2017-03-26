@@ -21,7 +21,7 @@
 		    <span class="badge"><?= $tasksCounter->rowCount() ?></span>
 		    <?= $assocListArray['caption'] ?>
     	  </a>
-    	  <a class="listDeleteBtn" href="actionsList.php?act=delete&listId=<?= $assocListArray['id'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+    	  <a class="listDeleteBtn" href="actionsList.php?act=delete&listId=<?= $assocListArray['id'] ?>" title="Delete <?= $assocListArray['caption'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 		<?php
 		}
 
