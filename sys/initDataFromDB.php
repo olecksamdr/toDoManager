@@ -17,6 +17,7 @@ if (isset($_GET['taskId'])) {
 }
 //Get data for list
 if (isset($_GET['listId'])) {
+	$listId = $_GET['listId'];
 	$qForList = "SELECT * FROM `lists` WHERE `id` = ?";
 	$list = $db->prepare($qForList);
 	$list->execute(Array($listId));
