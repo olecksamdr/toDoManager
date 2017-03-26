@@ -4,28 +4,15 @@ class Telegram{
     
     const BASE_API_URL = 'https://api.telegram.org/bot';
  
-    /**
-     * @param String $hookUrl - адрес на нашем сервере, куда будут приходить обновления
-     * @return mixed|null
-     */
     public function setWebHook($hookUrl){
         return $this->sendPost('setWebHook', ['url' => $hookUrl]);
     }
- 
-    /**
-     * @return mixed
-     */
+
     public function getUpdates(){
         $data = file_get_contents($this->buildUrl('getUpdates'));
         return json_decode($data, true);
     }
- 
-    /**
-     * @param int $chatId - ID чата, в который отправляем сообщение
-     * @param String $message - текст сообщения
-     * @param array $params - дом.параметры (опционально)
-     * @return mixed
-     */
+
     public function sendMessage($chatId, $message, $params = []){
         if(!is_array($params)) {
             $params = array();
@@ -40,11 +27,6 @@ class Telegram{
         return json_decode($data, true);
     }
  
-    /**
-     * @param String $methodName - имя метода в API, который вызываем
-     * @param array $data - параметры, которые передаем, необязательное поле
-     * @return mixed|null
-     */
     private function sendPost($methodName, $data = []){
         $result = null;
         
@@ -61,14 +43,9 @@ class Telegram{
         
     }
  
-    /**
-     * @param String $methodName - имя метода в API, который вызываем
-     * @return string - Софрмированный URL для отправки запроса
-     */
     private function buildUrl($methodName){
         return self::BASE_API_URL.$this->token.'/'.$methodName;
     }
-    
     
 }
 ?>
