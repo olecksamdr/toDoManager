@@ -5,13 +5,12 @@
 		$action = $_GET['act'];
 		switch($action){
 			case 'delete':
-				$actionToUser = "Deleting";
 				if (!isset($_GET['taskId']) || $_GET['taskId'] == "") {
 					$actionToUser = "Error with actions";
 					$err = "Please, select a list to deleting";
 				} else {
 					$taskId = $_GET['taskId'];
-					$actionToUser = "Deleting task";
+					$actionToUser = "Deleting task from ";
 					$deleting = Task::delete($taskId);
 					if ($deleting) {
 						$msg = "Deleting successful!";
