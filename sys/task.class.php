@@ -15,7 +15,7 @@ class Task {
 	static function edit($taskId, $title, $description){
 		$sql = "UPDATE `tasks` SET `title` = ?, `description` = ? WHERE `id` = ? LIMIT 1";
 		$res = DB::connect()->prepare($sql);
-		$res->execute(Array($taskId, $title, $description));
+		$res->execute(Array($title, $description, $taskId));
 		return $res;
 	}
 	static function delete($taskId){
