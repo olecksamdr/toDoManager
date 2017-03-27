@@ -1,5 +1,5 @@
 <?php 
-	require_once "/sys/init.php";
+	require_once "sys/init.php";
 ?>
 <h1>toDo Lists Manager<small>/</small>
 <a style="float: right;" class="btn btn-primary btn-lg" href="creations.php?type=list" role="button">Add new list</a>

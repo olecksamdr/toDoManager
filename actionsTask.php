@@ -1,5 +1,5 @@
 <?php
-	require_once "/sys/init.php";
+	require_once "sys/init.php";
 	require_once "sys/initDataFromDB.php";
 	if (isset($_GET['act']) && $_GET['act'] != "") {
 		$action = $_GET['act'];

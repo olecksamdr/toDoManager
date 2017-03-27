@@ -1,5 +1,5 @@
 <?php 
-	require_once "/sys/init.php";
+	require_once "sys/init.php";
 	if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 		$err = "Please, select a list of tasks!";
 		$title = "Error";
