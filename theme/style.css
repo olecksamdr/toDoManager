@@ -24,3 +24,9 @@ body{
     left: 27px;
     bottom: 29px;
 }
+.taskAddBtn{
+	position: relative;
+    float: left;
+    left: -27px;
+    bottom: 29px;
+}

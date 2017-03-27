@@ -23,6 +23,7 @@
 		    <?= $assocListArray['caption'] ?>
     	  </a>
     	  <a class="listDeleteBtn" href="actionsList.php?act=delete&listId=<?= $assocListArray['id'] ?>" title="Delete <?= $assocListArray['caption'] ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+    	  <a href="creations.php?type=task&listId=<?=$assocListArray['id']?>" class="taskAddBtn" title="Add new task into <?= $assocListArray['caption'] ?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 		<?php
 		}
 
