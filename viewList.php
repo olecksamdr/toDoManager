@@ -8,20 +8,19 @@
 		$listId = $_GET['listId'];
 		$currentList = $lists->getCurrentList($listId);
 		$currentList = $currentList->fetch();
-		$title = "Tasks from ".$currentList['caption'];
+		$captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 7) : $currentList['caption'];
+		$title = "Tasks from \"".$captionForTitle."\"";
 	}
 ?>
-	<?php 
-	  if (isset($err)) {
-	?>
-	  <h1><a href='./'>toDo Lists Manager</a><small>/Error</small></h1>
+	<? if (isset($err)):	?>
+	  <h1><a href='./'>toDo Lists Manager</a><small>/<?=$title?></small></h1>
 	  <div class="alert alert-danger" role="alert">
 	  	<?= $err ?>
 	  </div>
-	<?php
-	  } else {
-	  	echo "<h1><a href='./'>toDo Lists Manager</a><small>/Tasks from \"".$currentList['caption']."\"</small><a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=".$_GET['listId']."' role='button'>Add new task</a></h1>";
-	  	echo "<div class='tasks'>";
+	<? else: ?>
+	  	<h1><a href='./'>toDo Lists Manager</a><small>/<?=$title?></small><a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=<?=$listId?>' role='button'>Add new task</a></h1>
+	  	<div class='tasks'>
+	<?
 	  	$task = $tasks->getTasksFromList($_GET['listId']);
 	  	while ($assocTasksArray = $task->fetch()) { 
 	?>
@@ -37,13 +36,13 @@
 			<?= $assocTasksArray['description']?>
   	      </div>
  	      </div>
-	<?php
+	<?
 	  }
 	  echo "</div>";
 	  if (!$task->rowCount()) {
 	  	echo "<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>";
 	  }
-	  }
+	  endif;
 	?>
 </body>
 </html>
