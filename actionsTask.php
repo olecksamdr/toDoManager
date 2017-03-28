@@ -28,10 +28,12 @@
 				$creating = $tasks->create($listId, $title, $description, '0000-00-00');
 				if ($creating) {
 					$actionToUser = "Creating new task";
+
 					$thisTask = "SELECT * FROM `tasks` WHERE `title` = ? LIMIT 1";
 					$currentTask = $db->prepare($thisTask);
 					$currentTask->execute(Array($title));
 					$currentTask = $currentTask->fetch();
+					
 					$msg = "Creating a task ".$currentTask['title']." successful!";
 					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
 						".$currentTask['description']);

@@ -5,7 +5,6 @@
 		$action = $_GET['act'];
 		switch($action){
 			case 'delete':
-
 				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 					$actionToUser = "Error with actions";
 					$err = "Please, select a list to deleting";
