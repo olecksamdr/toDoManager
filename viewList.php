@@ -36,10 +36,11 @@
 	<?
 	  	$task = $tasks->getTasksFromList($_GET['listId']);
 	  	while ($assocTasksArray = $task->fetch()) { 
+	  	  $isActive = $tasks->showIsActive($assocTasksArray['id']);
 	?>
 	      <div class="panel panel-default">
   	    	<div class="panel-heading">
-        	  <h3 class="panel-title"><?= $assocTasksArray['title']?> 
+        	  <h3 class="panel-title"><span class="<?=$isActive?>"><?= $assocTasksArray['title']?></span> 
         	  [DeadLine: <?= $tasks->showExpiredTime($assocTasksArray['id'])?>]
         	  </h3>
 				<div class="actions">

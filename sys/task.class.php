@@ -1,5 +1,10 @@
 <?php
 class Task {
+	public function isActive($taskId){
+		$taskIsActive = $this->getCurrentTaskById($taskId);
+		$taskIsActive = $taskIsActive->fetch();
+		return $isActive = ($taskIsActive['active']) ? true : false;
+	}
 	public function getTasksFromList($listId){
 		$qForTaskFromList = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC";
 		$taskFromList = DB::connect()->prepare($qForTaskFromList);
@@ -27,6 +32,10 @@ class Task {
 		} else{
 			return "<span style='color: grey;'>".$taskForShowing['expiredBy']."</span>";
 		}
+	}
+	public function showIsActive($taskId){
+		$workedTask = $this->isActive($taskId);
+		return $isActive = ($workedTask) ? "isActive" : "isUnActive" ;
 	}
 	public function create($listId, $title, $description, $expiredBy){
 		$sqlCreate = "INSERT INTO `tasks` (`listId`, `title`, `description`, `expiredBy`) VALUES (?, ?, ?, ?)";

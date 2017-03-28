@@ -1,7 +1,13 @@
 <?php
 require_once "sys/init.php";
-$date = $_GET['date'];
-echo $date;
+
+$taskId = $_GET['taskId'];
+
+echo $res = $tasks->showIsActive($taskId);
+
+
+// $date = $_GET['date'];
+// echo $date;
 // $task = $tasks->getTasksFromList($_GET['listId']);
 // while ($assocTasksArray = $task->fetch()) {
 // 	// $assocTasksArray['expiredBy'] = date('Y-m-d', strtotime('+1 week'));
@@ -16,11 +22,29 @@ echo $date;
 // 	// }
 // }
 ?>
-	<form action="?">
+<!-- 	<form action="?">
 	  <div class="form-group">
 		<input type="date" name="date" class="form-control">
 	  </div>
 		<input type="submit" value="send">
-	</form>
+	</form> -->
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="...">
+      </span>
+      <input type="text" class="form-control" aria-label="..." value="Is Active?">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="radio" aria-label="...">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
 </body>
 </html>

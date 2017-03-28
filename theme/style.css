@@ -30,3 +30,9 @@ body{
     left: -27px;
     bottom: 29px;
 }
+.isActive{
+	text-shadow: 1px 1px 4px #00E900;
+}
+.isUnActive{
+	text-shadow: 1px 1px 4px #242524;
+}
