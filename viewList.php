@@ -8,7 +8,7 @@
 		$listId = $_GET['listId'];
 		$currentList = $lists->getCurrentList($listId);
 		$currentList = $currentList->fetch();
-		$captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 13) : $currentList['caption'];
+		$captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 12) : $currentList['caption'];
 		$title = "Tasks from \"".$captionForTitle."...\"";
 	}
 ?>
@@ -40,7 +40,7 @@
 	      <div class="panel panel-default">
   	    	<div class="panel-heading">
         	  <h3 class="panel-title"><?= $assocTasksArray['title']?> 
-        	  [Expired: <?= $tasks->showExpiredTime($assocTasksArray['id'])?>]
+        	  [DeadLine: <?= $tasks->showExpiredTime($assocTasksArray['id'])?>]
         	  </h3>
 				<div class="actions">
 			  	  <a href="creations.php?type=editTask&taskId=<?= $assocTasksArray['id']?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>

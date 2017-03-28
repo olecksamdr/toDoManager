@@ -14,10 +14,9 @@
 	</form>
 <? elseif($type == 'task'): 
    $listId = $_GET['listId'];
-   $currentList = $lists->getCurrentList($listId);
-   $currentList = $currentList->fetch();
-   $captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 13) : $currentList['caption'];
-   $title = '"'.$captionForTitle.'..."';
+   $currentList = $lists->getCurrentList($listId)->fetch();
+   $captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 12).'..."' : $currentList['caption'].'"';
+   $title = '"'.$captionForTitle;
 ?>
 	<h1><a href='./'>toDo Lists Manager</a><small>/Add new task into <?=$title?></small></h1>
 	<form action="actionsTask.php?act=add&listId=<?=$listId?>" method="POST">
@@ -27,12 +26,16 @@
 	  <div class="form-group">
 	    <textarea name="description" class="form-control" rows="3" placeholder="Task description"></textarea>
 	  </div>
+	  <div class="form-group">
+		<input type="date" name="expiredBy" class="form-control">
+	  </div>
 	  <button type="submit" class="btn btn-default">Create task</button>
 	</form>
 <?
 	elseif($type == 'editTask'):
-	require_once "sys/initDataFromDB.php";
-	$task = $currentTask->fetch();
+
+	$taskId = $_GET['taskId'];
+	$task = $tasks->getCurrentTaskById($taskId)->fetch();
 ?>
 	<h1><a href='./'>toDo Lists Manager</a><small>/<a href="viewList.php?listId=<?= $task['listId']?>"><?= $task['title']?></a>/Edit</small></h1>
 	<form action="actionsTask.php?act=edit&taskId=<?=$_GET['taskId']?>" method="POST">

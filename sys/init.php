@@ -22,16 +22,9 @@ try {
     die('DB connection error: ' . $e->getMessage());
 }
 
-//Get all lists from DB
-$qForLists = "SELECT * FROM `lists`";
-$lists  = $db->query($qForLists);
-
-//Get tasks by list ID;
-$qForTasks = "SELECT * FROM `tasks` WHERE `listId` = '1'";
-$tasks = $db->query($qForTasks);
-
 $sender = new Telegram();
 $sender->token = "227521073:AAHiaG6tlSQ5Ozc_p-hJ_joJISxK0gJHdKI";
+
 $tasks = new Task();
 $lists = new Lists();
 ?>

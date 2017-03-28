@@ -1,6 +1,7 @@
 <?php
 require_once "sys/init.php";
-
+$date = $_GET['date'];
+echo $date;
 // $task = $tasks->getTasksFromList($_GET['listId']);
 // while ($assocTasksArray = $task->fetch()) {
 // 	// $assocTasksArray['expiredBy'] = date('Y-m-d', strtotime('+1 week'));
@@ -14,6 +15,12 @@ require_once "sys/init.php";
 // 	// 	echo "Good";
 // 	// }
 // }
-	$var = $tasks->create(13, 'test', 'td', '2007-12-12');
-	var_dump($var);
 ?>
+	<form action="?">
+	  <div class="form-group">
+		<input type="date" name="date" class="form-control">
+	  </div>
+		<input type="submit" value="send">
+	</form>
+</body>
+</html>

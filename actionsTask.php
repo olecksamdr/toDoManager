@@ -1,22 +1,22 @@
 <?php
-	require_once "sys/init.php";
-	require_once "sys/initDataFromDB.php";
-	if (isset($_GET['act']) && $_GET['act'] != "") {
+	require_once 'sys/init.php';
+	require_once 'sys/initDataFromDB.php';
+	if (isset($_GET['act']) && $_GET['act'] != '') {
 		$action = $_GET['act'];
 		switch($action){
 			case 'delete':
-				$actionToUser = "Deleting";
-				if (!isset($_GET['taskId']) || $_GET['taskId'] == "") {
-					$actionToUser = "Error with actions";
-					$err = "Please, select a task to deleting";
+				if (!isset($_GET['taskId']) || $_GET['taskId'] == '') {
+					$actionToUser = 'Error with actions';
+					$err = 'Please, select a task to deleting';
 				} else {
 					$taskId = $_GET['taskId'];
-					$actionToUser = "Deleting task";
-					$deleting = Task::delete($taskId);
+					$actionToUser = 'Deleting task';
+					$deleting = $tasks->delete($taskId);
 					if ($deleting) {
-						$msg = "Deleting successful!";
+						$msg = 'Deleting successful!';
 					} else {
-						$err = "Deleting error!";
+						$actionToUser = 'Error';
+						$err = 'Deleting error!';
 					}
 				}
 				break;
@@ -24,21 +24,19 @@
 				$listId = $_GET['listId'];
 				$title = $_POST['title'];
 				$description = $_POST['description'];
+				$expiredBy = $_POST['expiredBy'];
 
-				$creating = $tasks->create($listId, $title, $description, '0000-00-00');
+				$creating = $tasks->create($listId, $title, $description, $expiredBy);
+
 				if ($creating) {
-					$actionToUser = "Creating new task";
-
-					$thisTask = "SELECT * FROM `tasks` WHERE `title` = ? LIMIT 1";
-					$currentTask = $db->prepare($thisTask);
-					$currentTask->execute(Array($title));
-					$currentTask = $currentTask->fetch();
-					
-					$msg = "Creating a task ".$currentTask['title']." successful!";
-					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
-						".$currentTask['description']);
+					$actionToUser = 'Creating new task';
+					$currentTask = $tasks->getCurrentTaskByTitle($title)->fetch();
+					$msg = 'Creating a task '.$currentTask['title'].' successful!';
+//					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
+//						".$currentTask['description']);
 				} else {
-					$err = "Creating error!";
+					$actionToUser = 'Error';
+					$err = 'Creating error!';
 				}
 				break;
 			case 'edit':
@@ -46,11 +44,12 @@
 				$title = $_POST['title'];
 				$description = $_POST['description'];
 
-				$editing = Task::edit($taskId, $title, $description);
+				$editing = $tasks->edit($taskId, $title, $description);
 				if ($editing) {
 					$actionToUser = "Editing a task ".$title;
 					$msg = "Editing successful!";
 				} else {
+					$actionToUser = 'Error';
 					$err = "Editing error!";
 				}
 				break;
@@ -62,23 +61,16 @@
 ?>
 
 <h1><a href='./'>toDo Lists Manager</a><small>/<?= $actionToUser?></small></h1>
-<?php
-if (isset($err)) {
-?>
+<? if(isset($err)): ?>
 	<div class='alert alert-danger' role='alert'>
 	<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 	<span class='sr-only'>Error:</span>
 	<?= $err ?>
 	</div>
-
-<?php
-} else if(isset($msg)) {
-?>
-	<div class="alert alert-success" role="alert">
+<? elseif(isset($msg)): ?>
+	<div class='alert alert-success' role='alert'>
 	<?= $msg ?>
 	</div>
-<?php
-}
-?>
+<? endif; ?>
 </body>
 </html>

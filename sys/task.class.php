@@ -1,44 +1,50 @@
 <?php
 class Task {
 	public function getTasksFromList($listId){
-		$qForTask = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC";
-		$task = DB::connect()->prepare($qForTask);
-		$task->execute(Array($listId));
-		return $task;
+		$qForTaskFromList = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC";
+		$taskFromList = DB::connect()->prepare($qForTaskFromList);
+		$taskFromList->execute(Array($listId));
+		return $taskFromList;
 	}
-	public function getCurrentTask($taskId){
-		$qForTask = "SELECT * FROM `tasks` WHERE `id` = ?";
-		$task = DB::connect()->prepare($qForTask);
-		$task->execute(Array($taskId));
-		return $task;
+	public function getCurrentTaskById($taskId){
+		$qForTaskById = "SELECT * FROM `tasks` WHERE `id` = ?";
+		$taskById = DB::connect()->prepare($qForTaskById);
+		$taskById->execute(Array($taskId));
+		return $taskById;
+	}
+	public function getCurrentTaskByTitle($title){
+		$qForTaskByTitle = "SELECT * FROM `tasks` WHERE `title` = ?";
+		$taskByTitle = DB::connect()->prepare($qForTaskByTitle);
+		$taskByTitle->execute(Array($title));
+		return $taskByTitle;
 	}
 	public function showExpiredTime($taskId){
-		$task = $this->getCurrentTask($taskId)->fetch();
-		if($task['expiredBy'] < date('Y-m-d', strtotime('+2 day'))){
-			return "<span style='color: red;'>".$task['expiredBy']."</span>";
-		} elseif ($task['expiredBy'] > date('Y-m-d', strtotime('+4 day'))) {
-			return "<span style='color: blue;'>".$task['expiredBy']."</span>";
+		$taskForShowing = $this->getCurrentTaskById($taskId)->fetch();
+		if($taskForShowing['expiredBy'] < date('Y-m-d', strtotime('+2 day'))){
+			return "<span style='color: red;'>".$taskForShowing['expiredBy']."</span>";
+		} elseif ($taskForShowing['expiredBy'] > date('Y-m-d', strtotime('+4 day'))) {
+			return "<span style='color: blue;'>".$taskForShowing['expiredBy']."</span>";
 		} else{
-			return "<span style='color: grey;'>".$task['expiredBy']."</span>";
+			return "<span style='color: grey;'>".$taskForShowing['expiredBy']."</span>";
 		}
 	}
-	static function create($listId, $title, $description, $expiredBy){
-		$sql = "INSERT INTO `tasks` (`listId`, `title`, `description`, `expiredBy`) VALUES (?, ?, ?, ?)";
-		$res = DB::connect()->prepare($sql);
-		$res->execute(Array($listId, $title, $description, $expiredBy));
-		return $res;
+	public function create($listId, $title, $description, $expiredBy){
+		$sqlCreate = "INSERT INTO `tasks` (`listId`, `title`, `description`, `expiredBy`) VALUES (?, ?, ?, ?)";
+		$create = DB::connect()->prepare($sqlCreate);
+		$create->execute(Array($listId, $title, $description, $expiredBy));
+		return $create;
 	}
-	static function edit($taskId, $title, $description){
-		$sql = "UPDATE `tasks` SET `title` = ?, `description` = ? WHERE `id` = ? LIMIT 1";
-		$res = DB::connect()->prepare($sql);
-		$res->execute(Array($title, $description, $taskId));
-		return $res;
+	public function edit($taskId, $title, $description){
+		$sqlEdit = "UPDATE `tasks` SET `title` = ?, `description` = ? WHERE `id` = ? LIMIT 1";
+		$edit = DB::connect()->prepare($sqlEdit);
+		$edit->execute(Array($title, $description, $taskId));
+		return $edit;
 	}
-	static function delete($taskId){
-		$sql = "DELETE FROM `tasks` WHERE `id` = ? LIMIT 1";
-		$res = DB::connect()->prepare($sql);
-		$res->execute(Array($taskId));
-		return $res;
+	public function delete($taskId){
+		$sqlDelete = "DELETE FROM `tasks` WHERE `id` = ? LIMIT 1";
+		$delete = DB::connect()->prepare($sqlDelete);
+		$delete->execute(Array($taskId));
+		return $delete;
 	}
 }
 ?>

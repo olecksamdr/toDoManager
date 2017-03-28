@@ -28,12 +28,11 @@
 				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 					$actionToUser = "Error with clearing";
 					$err = "Please, select a list to clearing";
+					break;
 				} else {
 					$listId = $_GET['listId'];
-					$thisList = "SELECT * FROM `lists` WHERE `caption` = ? LIMIT 1";
-					$currentList = $db->prepare($thisList);
-					$currentList->execute(Array($listId));
-					$currentList = $currentList->fetch();
+					$thisList = $lists->getCurrentList($listId);
+					$currentList = $thisList->fetch();
 
 					$actionToUser = "Clearing list ".$currentList['caption'];
 					$clearing = Lists::clearList($listId);
@@ -41,9 +40,11 @@
 						$msg = "Clearing a list successful!";
 						$sender->sendMessage($user['chatId'], "You are delete all tasks from list ".$currentList['caption']);
 					} else {
+						$actionToUser = "Error";
 						$err = "Clearing error!";
 					}
 				}
+				break;
 			case 'add':
 				$caption = $_POST['caption'];
 				if ($caption === "") {
@@ -60,10 +61,11 @@
 						$msg = "Creating a list ".$currentList['caption']." successful!";
 						$sender->sendMessage($user['chatId'], "You are create a new list ".$currentList['caption']);
 					} else {
+						$actionToUser = "Error";
 						$err = "Creating error!";
 					}
-					break;
 				}
+				break;
 		}
 	} elseif(!isset($_GET['act']) || $_GET['act'] == "") {
 		$actionToUser = "Error with actions";
