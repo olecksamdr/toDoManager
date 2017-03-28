@@ -8,7 +8,7 @@
 				$actionToUser = "Deleting";
 				if (!isset($_GET['taskId']) || $_GET['taskId'] == "") {
 					$actionToUser = "Error with actions";
-					$err = "Please, select a list to deleting";
+					$err = "Please, select a task to deleting";
 				} else {
 					$taskId = $_GET['taskId'];
 					$actionToUser = "Deleting task";
@@ -25,14 +25,14 @@
 				$title = $_POST['title'];
 				$description = $_POST['description'];
 
-				$creating = Task::create($listId, $title, $description);
+				$creating = $tasks->create($listId, $title, $description, '0000-00-00');
 				if ($creating) {
 					$actionToUser = "Creating new task";
 					$thisTask = "SELECT * FROM `tasks` WHERE `title` = ? LIMIT 1";
 					$currentTask = $db->prepare($thisTask);
 					$currentTask->execute(Array($title));
 					$currentTask = $currentTask->fetch();
-					$msg = "Creating a list ".$currentTask['title']." successful!";
+					$msg = "Creating a task ".$currentTask['title']." successful!";
 					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
 						".$currentTask['description']);
 				} else {
@@ -46,7 +46,7 @@
 
 				$editing = Task::edit($taskId, $title, $description);
 				if ($editing) {
-					$actionToUser = "Editing";
+					$actionToUser = "Editing a task ".$title;
 					$msg = "Editing successful!";
 				} else {
 					$err = "Editing error!";

@@ -26,9 +26,9 @@
   				</button>
   				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
   				  <li><a href='creations.php?type=task&listId=<?=$listId?>'>Add new task</a></li>
-  				  <li><a href="#">Clear all lis</a></li>
+  				  <li><a href="actionsList.php?act=clear&listId=<?=$listId?>">Clear all list</a></li>
   				  <li role="separator" class="divider"></li>
-  				  <li><a href="#">Delete list</a></li>
+  				  <li><a href="actionsList.php?act=delete&listId=<?=$listId?>">Delete list</a></li>
   				</ul>
 			</div>
 	  	</h1>
@@ -53,7 +53,7 @@
 
  	      </div>
 	<? } ?>
-	  </div>;
+	  </div>
 	  <? if (!$task->rowCount()):?>
 	  	<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>
 	  <?

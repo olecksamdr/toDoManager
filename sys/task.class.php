@@ -1,7 +1,7 @@
 <?php
 class Task {
 	public function getTasksFromList($listId){
-		$qForTask = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? ORDER BY `id` 	DESC";
+		$qForTask = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC";
 		$task = DB::connect()->prepare($qForTask);
 		$task->execute(Array($listId));
 		return $task;
@@ -22,10 +22,10 @@ class Task {
 			return "<span style='color: grey;'>".$task['expiredBy']."</span>";
 		}
 	}
-	static function create($listId, $title, $description){
-		$sql = "INSERT INTO `tasks` (`listId`, `title`, `description`) VALUES (?, ?, ?)";
+	static function create($listId, $title, $description, $expiredBy){
+		$sql = "INSERT INTO `tasks` (`listId`, `title`, `description`, `expiredBy`) VALUES (?, ?, ?, ?)";
 		$res = DB::connect()->prepare($sql);
-		$res->execute(Array($listId, $title, $description));
+		$res->execute(Array($listId, $title, $description, $expiredBy));
 		return $res;
 	}
 	static function edit($taskId, $title, $description){

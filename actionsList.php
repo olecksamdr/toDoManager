@@ -5,7 +5,7 @@
 		$action = $_GET['act'];
 		switch($action){
 			case 'delete':
-				$actionToUser = "Deleting";
+
 				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 					$actionToUser = "Error with actions";
 					$err = "Please, select a list to deleting";
@@ -25,6 +25,26 @@
 					}
 				}
 				break;
+			case 'clear':
+				if (!isset($_GET['listId']) || $_GET['listId'] == "") {
+					$actionToUser = "Error with clearing";
+					$err = "Please, select a list to clearing";
+				} else {
+					$listId = $_GET['listId'];
+					$thisList = "SELECT * FROM `lists` WHERE `caption` = ? LIMIT 1";
+					$currentList = $db->prepare($thisList);
+					$currentList->execute(Array($listId));
+					$currentList = $currentList->fetch();
+
+					$actionToUser = "Clearing list ".$currentList['caption'];
+					$clearing = Lists::clearList($listId);
+					if ($clearing) {
+						$msg = "Clearing a list successful!";
+						$sender->sendMessage($user['chatId'], "You are delete all tasks from list ".$currentList['caption']);
+					} else {
+						$err = "Clearing error!";
+					}
+				}
 			case 'add':
 				$caption = $_POST['caption'];
 				if ($caption === "") {
