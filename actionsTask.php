@@ -32,8 +32,8 @@
 					$actionToUser = 'Creating new task';
 					$currentTask = $tasks->getCurrentTaskByTitle($title)->fetch();
 					$msg = 'Creating a task '.$currentTask['title'].' successful!';
-//					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
-//						".$currentTask['description']);
+					$sender->sendMessage($user['chatId'], "You are create a new task ".$currentTask['title']." with content:
+						".$currentTask['description']);
 				} else {
 					$actionToUser = 'Error';
 					$err = 'Creating error!';
