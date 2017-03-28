@@ -8,8 +8,8 @@
 		$listId = $_GET['listId'];
 		$currentList = $lists->getCurrentList($listId);
 		$currentList = $currentList->fetch();
-		$captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 7) : $currentList['caption'];
-		$title = "Tasks from \"".$captionForTitle."\"";
+		$captionForTitle = (strlen($currentList['caption']) > 7) ? substr($currentList['caption'], 0, 13) : $currentList['caption'];
+		$title = "Tasks from \"".$captionForTitle."...\"";
 	}
 ?>
 	<? if (isset($err)):	?>
@@ -18,7 +18,21 @@
 	  	<?= $err ?>
 	  </div>
 	<? else: ?>
-	  	<h1><a href='./'>toDo Lists Manager</a><small>/<?=$title?></small><a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=<?=$listId?>' role='button'>Add new task</a></h1>
+	  	<h1><a href='./'>toDo Lists Manager</a><small>/<?=$title?></small>
+	  		<div style="float: right;" class="dropdown">
+  				<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    				Actions
+    				<span class="caret"></span>
+  				</button>
+  				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  				  <li><a href='creations.php?type=task&listId=<?=$listId?>'>Add new task</a></li>
+  				  <li><a href="#">Clear all lis</a></li>
+  				  <li role="separator" class="divider"></li>
+  				  <li><a href="#">Delete list</a></li>
+  				</ul>
+			</div>
+	  		<!-- <a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=<?=$listId?>' role='button'>Add new task</a> -->
+	  	</h1>
 	  	<div class='tasks'>
 	<?
 	  	$task = $tasks->getTasksFromList($_GET['listId']);
@@ -26,7 +40,9 @@
 	?>
 	      <div class="panel panel-default">
   	    	<div class="panel-heading">
-        	  <h3 class="panel-title"><?= $assocTasksArray['title']?> [01.01.1980]</h3>
+        	  <h3 class="panel-title"><?= $assocTasksArray['title']?> 
+        	  [Expired: <?= date('Y-m-d', strtotime('+1 week'))?>]
+        	  </h3>
 				<div class="actions">
 			  	  <a href="creations.php?type=editTask&taskId=<?= $assocTasksArray['id']?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 			  	  <a href="actionsTask.php?act=delete&taskId=<?= $assocTasksArray['id']?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
