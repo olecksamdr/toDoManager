@@ -1,9 +1,9 @@
 <?php
 require_once "sys/init.php";
 
-$taskId = $_GET['taskId'];
+// $taskId = $_GET['taskId'];
 
-echo $res = $tasks->showIsActive($taskId);
+// echo $res = $tasks->showIsActive($taskId);
 
 
 // $date = $_GET['date'];
@@ -28,7 +28,7 @@ echo $res = $tasks->showIsActive($taskId);
 	  </div>
 		<input type="submit" value="send">
 	</form> -->
-<div class="row">
+<!-- <div class="row"> -->
   <div class="col-lg-6">
     <div class="input-group">
       <span class="input-group-addon">
@@ -37,14 +37,13 @@ echo $res = $tasks->showIsActive($taskId);
       <input type="text" class="form-control" aria-label="..." value="Is Active?">
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
-  <div class="col-lg-6">
+  <!-- <div class="col-lg-6"> -->
     <div class="input-group">
       <span class="input-group-addon">
         <input type="radio" aria-label="...">
       </span>
       <input type="text" class="form-control" aria-label="...">
     </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
+  <!-- </div>/.col-lg-6 -->
 </body>
 </html>

@@ -40,10 +40,23 @@
 	<h1><a href='./'>toDo Lists Manager</a><small>/<a href="viewList.php?listId=<?= $task['listId']?>"><?= $task['title']?></a>/Edit</small></h1>
 	<form action="actionsTask.php?act=edit&taskId=<?=$_GET['taskId']?>" method="POST">
 	  <div class="form-group">
+		<div class="input-group">
+    	  <span class="input-group-addon">
+    	    <input name="isActive" type="checkbox" checked aria-label="">
+    	  </span>
+    	  <label for="isActive">Is active task?</label>
+    	</div>
+      </div>
+	  <div class="form-group">
 	    <input required="required" type="text" name="title" class="form-control" placeholder="Task caption" value="<?= $task['title']?>">
 	  </div>
 	  <div class="form-group">
-	    <textarea name="description" class="form-control" rows="3" placeholder="Task description" value="<?= $task['description']?>"></textarea>
+	    <textarea name="description" class="form-control" rows="3" placeholder="Task description" >
+	    	<?= $task['description']?>
+	    </textarea>
+	  </div>
+	  <div class="form-group">
+		<input required="required" type="date" name="expiredBy" class="form-control">
 	  </div>
 	  <button type="submit" class="btn btn-default">Edit task</button>
 	</form>

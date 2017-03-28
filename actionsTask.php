@@ -25,8 +25,9 @@
 				$title = $_POST['title'];
 				$description = $_POST['description'];
 				$expiredBy = $_POST['expiredBy'];
+				$active = $_POST['isActive'];
 
-				$creating = $tasks->create($listId, $title, $description, $expiredBy);
+				$creating = $tasks->create($listId, $title, $description, $expiredBy, $active);
 
 				if ($creating) {
 					$actionToUser = 'Creating new task';
@@ -40,14 +41,16 @@
 				}
 				break;
 			case 'edit':
-				$taskId = $_GET['taskId'];
-				$title = $_POST['title'];
-				$description = $_POST['description'];
+				echo $taskId = $_GET['taskId'];
+				echo $title = $_POST['title'];
+				echo $description = $_POST['description'];
+				echo $expiredBy = $_POST['expiredBy'];
+				echo $active = $_POST['isActive'];
 
-				$editing = $tasks->edit($taskId, $title, $description);
+				$editing = $tasks->edit($title, $description, $expiredBy, $active, $taskId);
 				if ($editing) {
 					$actionToUser = "Editing a task ".$title;
-					$msg = "Editing successful!";
+					$msg = 'Editing a task "'.$title.'" successful!';
 				} else {
 					$actionToUser = 'Error';
 					$err = "Editing error!";
