@@ -34,7 +34,7 @@
 </div>
 <?php
 if (!$userLists->rowCount()) {
-	echo "<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>";
+	echo "<div class='alert alert-warning' role='alert'>You haven`t lists</div>";
 }
 ?>
 </body>

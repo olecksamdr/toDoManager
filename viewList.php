@@ -52,12 +52,12 @@
   	      </div>
 
  	      </div>
-	<?
-	  }
-	  echo "</div>";
-	  if (!$task->rowCount()) {
-	  	echo "<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>";
-	  }
+	<? } ?>
+	  </div>;
+	  <? if (!$task->rowCount()):?>
+	  	<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>
+	  <?
+	     endif;
 	  endif;
 	?>
 </body>
