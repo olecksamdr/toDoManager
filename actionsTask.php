@@ -25,7 +25,7 @@
 				$title = $_POST['title'];
 				$description = $_POST['description'];
 				$expiredBy = $_POST['expiredBy'];
-				$active = $_POST['isActive'];
+				// $active = $_POST['isActive'];
 
 				$creating = $tasks->create($listId, $title, $description, $expiredBy);
 
