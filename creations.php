@@ -36,15 +36,24 @@
 
 	$taskId = $_GET['taskId'];
 	$task = $tasks->getCurrentTaskById($taskId)->fetch();
+	$checkedDisActive = "";
+	$checkedActive = ($task['active']) ? "checked" : $checkedDisActive = "checked";
 ?>
-	<h1><a href='./'>toDo Lists Manager</a><small>/<a href="viewList.php?listId=<?= $task['listId']?>"><?= $task['title']?></a>/Edit</small></h1>
+	<h1>
+		<a href='./'>toDo Lists Manager</a>
+		<small>/
+		<a href="viewList.php?listId=<?= $task['listId']?>">
+		<?= $task['title']?>
+		</a>/Edit
+		</small>
+	</h1>
 	<form action="actionsTask.php?act=edit&taskId=<?=$_GET['taskId']?>" method="POST">
 	  <div class="form-group">
 		<div class="input-group">
     	  <span class="input-group-addon">
-    	    <input name="isActive" type="checkbox" checked aria-label="">
+    	    <input name="isActive" type="radio" <?= $checkedActive?> value="1">Is active task<br />
+    	    <input name="isActive" type="radio" <?= $checkedDisActive?> value="0">Is disactive task
     	  </span>
-    	  <label for="isActive">Is active task?</label>
     	</div>
       </div>
 	  <div class="form-group">
@@ -56,7 +65,7 @@
 	    </textarea>
 	  </div>
 	  <div class="form-group">
-		<input required="required" type="date" name="expiredBy" class="form-control">
+		<input required="required" type="date" name="expiredBy" class="form-control" value="<?= $task['expiredBy']?>">
 	  </div>
 	  <button type="submit" class="btn btn-default">Edit task</button>
 	</form>
