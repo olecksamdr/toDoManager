@@ -49,7 +49,7 @@
 				</div>
   	    	</div>
   	      <div class="panel-body">
-			<?= $assocTasksArray['description']?>
+			<?= nl2br($assocTasksArray['description'])?>
   	      </div>
 
  	      </div>
