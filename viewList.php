@@ -12,7 +12,7 @@
 		$title = "Tasks from \"".$captionForTitle."...\"";
 	}
 ?>
-	<? if (isset($err)):	?>
+	<? if (isset($err)): ?>
 	  <h1><a href='./'>toDo Lists Manager</a><small>/<?=$title?></small></h1>
 	  <div class="alert alert-danger" role="alert">
 	  	<?= $err ?>
@@ -31,7 +31,6 @@
   				  <li><a href="#">Delete list</a></li>
   				</ul>
 			</div>
-	  		<!-- <a style='float: right;' class='btn btn-primary btn-lg' href='creations.php?type=task&listId=<?=$listId?>' role='button'>Add new task</a> -->
 	  	</h1>
 	  	<div class='tasks'>
 	<?
@@ -41,7 +40,7 @@
 	      <div class="panel panel-default">
   	    	<div class="panel-heading">
         	  <h3 class="panel-title"><?= $assocTasksArray['title']?> 
-        	  [Expired: <?= date('Y-m-d', strtotime('+1 week'))?>]
+        	  [Expired: <?= $tasks->showExpiredTime($assocTasksArray['id'])?>]
         	  </h3>
 				<div class="actions">
 			  	  <a href="creations.php?type=editTask&taskId=<?= $assocTasksArray['id']?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>

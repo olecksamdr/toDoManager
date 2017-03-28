@@ -7,7 +7,7 @@ require_once "list.class.php";
 require_once "task.class.php";
 require_once "telegram.class.php";
 
-date_default_timezone_set("Europe/Helsinki"); 
+date_default_timezone_set("Europe/Helsinki");
 
 //trying connect to DB with cathcing errors
 try {
