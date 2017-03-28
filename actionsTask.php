@@ -41,11 +41,11 @@
 				}
 				break;
 			case 'edit':
-				echo $taskId = $_GET['taskId'];
-				echo $title = $_POST['title'];
-				echo $description = $_POST['description'];
-				echo $expiredBy = $_POST['expiredBy'];
-				echo $active = $_POST['isActive'];
+				$taskId = $_GET['taskId'];
+				$title = $_POST['title'];
+				$description = $_POST['description'];
+				$expiredBy = $_POST['expiredBy'];
+				$active = $_POST['isActive'];
 
 				$editing = $tasks->edit($title, $description, $expiredBy, $active, $taskId);
 				if ($editing) {
