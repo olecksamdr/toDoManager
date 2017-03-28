@@ -27,7 +27,7 @@
 				$expiredBy = $_POST['expiredBy'];
 				$active = $_POST['isActive'];
 
-				$creating = $tasks->create($listId, $title, $description, $expiredBy, $active);
+				$creating = $tasks->create($listId, $title, $description, $expiredBy);
 
 				if ($creating) {
 					$actionToUser = 'Creating new task';
