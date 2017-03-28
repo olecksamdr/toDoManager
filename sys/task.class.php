@@ -43,10 +43,10 @@ class Task {
 		$create->execute(Array($listId, $title, $description, $expiredBy));
 		return $create;
 	}
-	public function edit($taskId, $title, $description, $expiredBy, $active){
-		$sqlEdit = "UPDATE `tasks` SET `title` = ?, `description` = ?, `expiredBy` = ?, `active` = ? WHERE `id` = ? LIMIT 1";
+	public function edit($taskId, $title, $description, $expiredBy){
+		$sqlEdit = "UPDATE `tasks` SET `title` = ?, `description` = ?, `expiredBy` = ? WHERE `id` = ? LIMIT 1";
 		$edit = DB::connect()->prepare($sqlEdit);
-		$edit->execute(Array($title, $description, $expiredBy, $active, $taskId));
+		$edit->execute(Array($title, $description, $expiredBy, $taskId));
 		return $edit;
 	}
 	public function delete($taskId){

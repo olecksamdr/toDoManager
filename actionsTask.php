@@ -45,9 +45,9 @@
 				$title = $_POST['title'];
 				$description = $_POST['description'];
 				$expiredBy = $_POST['expiredBy'];
-				$active = $_POST['isActive'];
+				// $active = $_POST['isActive'];
 
-				$editing = $tasks->edit($title, $description, $expiredBy, $active, $taskId);
+				$editing = $tasks->edit($taskId, $title, $description, $expiredBy);
 				if ($editing) {
 					$actionToUser = "Editing a task ".$title;
 					$msg = 'Editing a task "'.$title.'" successful!';
