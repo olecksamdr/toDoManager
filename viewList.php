@@ -1,5 +1,7 @@
 <?php 
 	require_once "sys/init.php";
+	require_once "sys/pnation.php";
+
 	if (!isset($_GET['listId']) || $_GET['listId'] == "") {
 		$err = "Please, select a list of tasks!";
 		$title = "Error";
@@ -55,6 +57,7 @@
  	      </div>
 	<? } ?>
 	  </div>
+	  <?= $paginate?>
 	  <? if (!$task->rowCount()):?>
 	  	<div class='alert alert-warning' role='alert'>This list haven`t tasks</div>
 	  <?

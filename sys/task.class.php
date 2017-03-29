@@ -6,7 +6,7 @@ class Task {
 		return $isActive = ($taskIsActive['active']) ? true : false;
 	}
 	public function getTasksFromList($listId){
-		$qForTaskFromList = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC";
+		$qForTaskFromList = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC LIMIT ".$_SESSION['start'].", 3";
 		$taskFromList = DB::connect()->prepare($qForTaskFromList);
 		$taskFromList->execute(Array($listId));
 		return $taskFromList;

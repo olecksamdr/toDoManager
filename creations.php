@@ -49,11 +49,13 @@
 	</h1>
 	<form action="actionsTask.php?act=edit&taskId=<?=$_GET['taskId']?>" method="POST">
 	  <div class="form-group">
-		<div class="input-group">
-    	  <span class="input-group-addon">
-    	    <input name="isActive" type="radio" <?= $checkedActive?> value="1">Is active task<br />
-    	    <input name="isActive" type="radio" <?= $checkedDisActive?> value="0">Is disactive task
-    	  </span>
+		<div class="btn-group" data-toggle="buttons">
+    	  <label class="btn btn-primary active">
+    	  	<input name="isActive" type="radio" <?= $checkedActive?> value="1">Is active task
+    	  </label>
+    	  <label class="btn btn-primary">
+    	  	<input name="isActive" type="radio" <?= $checkedDisActive?> value="0">Is disactive task
+    	  </label>
     	</div>
       </div>
 	  <div class="form-group">

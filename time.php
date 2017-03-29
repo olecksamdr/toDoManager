@@ -1,5 +1,10 @@
 <?php
-require_once "sys/init.php";
+require_once 'sys/init.php';
+require_once 'sys/pages.class.php';
+require_once 'sys/pnation.php';
+
+
+echo $paginate;
 
 // $taskId = $_GET['taskId'];
 
@@ -21,6 +26,10 @@ require_once "sys/init.php";
 // 	// 	echo "Good";
 // 	// }
 // }
+
+// $pages = new Pages($db->query("SELECT COUNT(*) FROM `tasks`")->fetchColumn());
+
+// $pages->display('?'); 
 ?>
 <!-- 	<form action="?">
 	  <div class="form-group">
@@ -29,21 +38,23 @@ require_once "sys/init.php";
 		<input type="submit" value="send">
 	</form> -->
 <!-- <div class="row"> -->
-  <div class="col-lg-6">
+<!--   <div class="col-lg-6">
     <div class="input-group">
       <span class="input-group-addon">
         <input type="checkbox" aria-label="...">
       </span>
       <input type="text" class="form-control" aria-label="..." value="Is Active?">
-    </div><!-- /input-group -->
+    </div><!-- /input-group
   </div><!-- /.col-lg-6 -->
   <!-- <div class="col-lg-6"> -->
-    <div class="input-group">
+<!--     <div class="input-group">
       <span class="input-group-addon">
         <input type="radio" aria-label="...">
       </span>
       <input type="text" class="form-control" aria-label="...">
     </div><!-- /input-group -->
   <!-- </div>/.col-lg-6 -->
+
+
 </body>
 </html>
