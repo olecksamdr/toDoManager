@@ -1,10 +1,12 @@
 <?php
 require_once 'sys/init.php';
-require_once 'sys/pages.class.php';
-require_once 'sys/pnation.php';
+$user = new User(1);
+var_dump($user->login);
+
+// require_once 'sys/pnation.php';
 
 
-echo $paginate;
+// echo $paginate;
 
 // $taskId = $_GET['taskId'];
 

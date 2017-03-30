@@ -7,7 +7,7 @@ if ( isset($_GET['page']) ) {
     $page = 1;
 }
 $listId = $_GET['listId'];
-$ipp = 5;
+$ipp = $_SESSION['ipp'];
 //all page count
 $stages = 3;
 $count_sql = "SELECT * FROM `tasks` WHERE `listId` = '$listId'";

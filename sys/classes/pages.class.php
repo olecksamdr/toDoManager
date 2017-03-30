@@ -20,8 +20,7 @@ class Pages {
     /**
      * @param int $items_count Кол-во пунктов
      */
-    function __construct($items_count = 0)
-    {
+    function __construct($items_count = 0) {
         // global $user;
         // $this->items_per_page = $user->items_per_page;
         $this->tasks = $items_count;
@@ -31,16 +30,14 @@ class Pages {
      * Рассчет текущей страницы
      * @deprecated Рассчет производится автоматически. Больше этот метод вызывать вручную нет необходимости
      */
-    function this_page()
-    {
+    function this_page() {
 
     }
 
     /**
      * Рассчет кол-ва страниц и текущей страницы
      */
-    protected function _recalcPage()
-    {
+    protected function _recalcPage() {
         if (!$this->_items_count) {
             $this->pages = 1;
         } else {
@@ -72,8 +69,7 @@ class Pages {
      * Для подстановки в MYSQL LIMIT
      * @return string
      */
-    function limit()
-    {
+    function limit() {
         return $this->my_start() . ', ' . $this->_items_per_page;
     }
 
@@ -81,8 +77,7 @@ class Pages {
      * старт извлечения из базы
      * @return int
      */
-    function my_start()
-    {
+    function my_start() {
         return $this->_items_per_page * ($this->this_page - 1);
     }
 
@@ -90,8 +85,7 @@ class Pages {
      * конец
      * @return int
      */
-    function end()
-    {
+    function end() {
         return $this->_items_per_page * $this->this_page;
     }
 
@@ -99,8 +93,7 @@ class Pages {
      * пересчет кол-ва страниц
      * @deprecated
      */
-    function count()
-    {
+    function count() {
 
     }
 
@@ -110,13 +103,8 @@ class Pages {
      */
     function display($link) {
         $paginate = '';
-        
         if ($this->pages > 1) {
-            $list = new design();
-            $list->assign('link', $link);
-            $list->assign('k_page', $this->pages);
-            $list->assign('page', $this->this_page);
-            $list->display('design.pages.tpl');
+
         }
     }
 
@@ -125,13 +113,11 @@ class Pages {
      * @param string $link ссылка, к которой будет добавлено page={num}
      * @deprecated
      */
-    function listing($link)
-    {
+    function listing($link) {
         $this->display($link);
     }
 
-    function __set($name, $value)
-    {
+    function __set($name, $value) {
         switch ($name) {
             case 'tasks':
                 $this->_items_count = $value;
@@ -143,8 +129,7 @@ class Pages {
         $this->_recalcPage();
     }
 
-    function __get($name)
-    {
+    function __get($name) {
         switch ($name) {
             case 'items_per_page':
                 return $this->_items_per_page;

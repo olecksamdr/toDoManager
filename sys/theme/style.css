@@ -1,0 +1,72 @@
+/*@import url(reset.css);*/
+
+
+body{
+	margin: 0 auto;
+	width: 700px;
+	background-image: url(bg.png);
+}
+.lists, form, .tasks{
+	width: 600px;
+	margin: 50px auto;
+}
+.lists .panel-body{
+	padding: 0;
+}
+.list-group{
+	margin-bottom: 0;
+}
+.actions{
+	position: relative;
+	float: right;
+	top: -19px;
+}
+.listDeleteBtn{
+    position: relative;
+    float: right;
+    left: 27px;
+    bottom: 29px;
+}
+.taskAddBtn{
+	position: relative;
+    float: left;
+    left: -27px;
+    bottom: 29px;
+}
+.isActive{
+	text-shadow: 1px 1px 4px #00E900;
+}
+.isUnActive{
+	text-shadow: 1px 1px 4px #242524;
+}
+.pagination{
+	position: relative;
+	left: 40%;
+}
+
+
+
+.form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+}

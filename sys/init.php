@@ -1,11 +1,21 @@
 <?php
+if (!empty($_COOKIE['sid'])) {
+    // check session id in cookies
+    session_id($_COOKIE['sid']);
+}
+
+session_start();
+
 //Need to include all system files
 require_once "header.html";
 require_once "settings.php";
-require_once "db.class.php";
-require_once "list.class.php";
-require_once "task.class.php";
-require_once "telegram.class.php";
+require_once "classes/db.class.php";
+require_once "classes/list.class.php";
+require_once "classes/task.class.php";
+require_once "classes/telegram.class.php";
+require_once 'classes/auth.class.php';
+require_once 'classes/user.class.php';
+
 
 date_default_timezone_set("Europe/Helsinki");
 
@@ -27,4 +37,7 @@ $sender->token = "227521073:AAHiaG6tlSQ5Ozc_p-hJ_joJISxK0gJHdKI";
 
 $tasks = new Task();
 $lists = new Lists();
+if (isset($_SESSION["user_id"])) {
+	$user = new User($_SESSION["user_id"]);
+}
 ?>
