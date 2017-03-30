@@ -3,7 +3,7 @@ class Task {
 	public function isActive($taskId){
 		$taskIsActive = $this->getCurrentTaskById($taskId);
 		$taskIsActive = $taskIsActive->fetch();
-		return $isActive = ($taskIsActive['active']) ? true : false;
+		return ($taskIsActive['active']);
 	}
 	public function getTasksFromList($listId){
 		$qForTaskFromList = "SELECT `tasks`.`id`, `tasks`.`title`, `tasks`.`description`, `tasks`.`expiredBy` FROM `lists` LEFT JOIN `tasks` ON (`lists`.`id` = `tasks`.`listId`) WHERE `lists`.`id` = ? AND `tasks`.`id` != 'NULL' ORDER BY `id` DESC LIMIT ".$_SESSION['start'].", ".$_SESSION['ipp']."";
@@ -33,6 +33,11 @@ class Task {
 			return "<span style='color: grey;'>".$taskForShowing['expiredBy']."</span>";
 		}
 	}
+	public function isCompleted($taskId){
+		$taskIsCompleted = $this->getCurrentTaskById($taskId);
+		$taskIsCompleted = $taskIsCompleted->fetch();
+		return ($taskIsCompleted['completed']);
+	}
 	public function showIsActive($taskId){
 		$workedTask = $this->isActive($taskId);
 		return $isActive = ($workedTask) ? "isActive" : "isUnActive" ;
@@ -54,6 +59,12 @@ class Task {
 		$delete = DB::connect()->prepare($sqlDelete);
 		$delete->execute(Array($taskId));
 		return $delete;
+	}
+	public function makeCompleted($taskId){
+		$sqlCompl = "UPDATE `tasks` SET `completed` = '1' WHERE `id` = ? LIMIT 1";
+		$compl = DB::connect()->prepare($sqlCompl);
+		$compl->execute(Array($taskId));
+		return $compl;
 	}
 }
 ?>

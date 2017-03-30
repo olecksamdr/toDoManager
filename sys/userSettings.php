@@ -9,7 +9,7 @@
         <h4 class="modal-title" id="titleLabel"><?=$user->login?>/Settings</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" action="userUpdate.php" method="POST">
+        <form class="form-horizontal" action="sys/userUpdate.php" method="POST">
           <div class="form-group">
             <label for="email" class="col-sm-2 control-label">E-mail</label>
             <div class="col-sm-10">

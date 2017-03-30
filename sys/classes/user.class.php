@@ -13,10 +13,10 @@ class User {
             $this->_user_init($id_or_arrayToCache);
         }
     }
-    public function userUpdate($id, $ipp, $email){
+    public function userUpdate($ipp, $email){
         $sqlForUpdate = "UPDATE `users` SET `ipp` = ?, `email` = ? WHERE `id` = ? LIMIT 1";
         $userUpdate = DB::connect()->prepare($sqlForUpdate);
-        $userUpdate->execute(Array($ipp, $email, $id));
+        $userUpdate->execute(Array($ipp, $email, $this->id));
         return $userUpdate;
     }
     function getCustomData($fields = array()){

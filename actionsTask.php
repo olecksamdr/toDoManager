@@ -56,6 +56,13 @@
 					$err = "Editing error!";
 				}
 				break;
+			case 'taskCompleted':
+				$taskId = $_GET['taskId'];
+				$compl = $tasks->makeCompleted($taskId);
+				if ($compl) {
+					$actionToUser = 'Task completed';
+					$msg = 'Congratulations!';
+				}
 		}
 	} elseif(!isset($_GET['act']) || $_GET['act'] == "") {
 		$actionToUser = "Error with actions";

@@ -1,6 +1,3 @@
-/*@import url(reset.css);*/
-
-
 body{
 	margin: 0 auto;
 	width: 700px;
@@ -38,6 +35,23 @@ body{
 }
 .isUnActive{
 	text-shadow: 1px 1px 4px #242524;
+}
+.ok{
+    color: green;
+}
+.taskCompleted{
+    position: relative;
+    float: left;
+    left: -5px;
+}
+.taskNotCompleted{
+    position: relative;
+    float: left;
+    left: -5px;
+    opacity: 0.5;
+}
+.taskNotCompleted:hover{
+    opacity: 1;
 }
 .pagination{
 	position: relative;
