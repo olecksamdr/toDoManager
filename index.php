@@ -1,17 +1,18 @@
 <?php 
 	require_once "sys/init.php";
+    require_once 'sys/userSettings.php';
 ?>
 <?php if (Auth\User::isAuthorized()): ?>
 
-	<h1>toDo Lists Manager<small>/<a href="#userSettings"><?=$user->login?></a></small>
+	<h1>toDo Lists Manager<small>/<a data-toggle="modal" data-target="#userSettings"><?=$user->login?></a></small>
 	<a style="float: right;" class="btn btn-primary btn-lg" href="	creations.php?type=list" role="button">Add new list</a>
 	</h1>
-      <form class="ajax" method="post" action="sys/ajax.php">
+<!--       <form class="ajax" method="post" action="sys/ajax.php">
           <input type="hidden" name="act" value="logout">
           <div class="form-actions">
               <button class="btn btn-large btn-primary" type="submit">Logout</button>
           </div>
-      </form>
+      </form> -->
 	<?php 
 	require_once 'showLists.php';
 	?>

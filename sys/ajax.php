@@ -1,7 +1,7 @@
 <?php
 
-include './classes/Auth.class.php';
-include './classes/AjaxRequest.class.php';
+include 'classes/Auth.class.php';
+include 'classes/AjaxRequest.class.php';
 
 if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
@@ -9,16 +9,14 @@ if (!empty($_COOKIE['sid'])) {
 }
 session_start();
 
-class AuthorizationAjaxRequest extends AjaxRequest
-{
+class AuthorizationAjaxRequest extends AjaxRequest {
     public $actions = array(
         "login" => "login",
         "logout" => "logout",
         "register" => "register",
     );
 
-    public function login()
-    {
+    public function login() {
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             // Method Not Allowed
             http_response_code(405);
@@ -55,8 +53,7 @@ class AuthorizationAjaxRequest extends AjaxRequest
         $this->message = sprintf("Hello, %s! Access granted.", $username);
     }
 
-    public function logout()
-    {
+    public function logout() {
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             // Method Not Allowed
             http_response_code(405);
@@ -70,7 +67,7 @@ class AuthorizationAjaxRequest extends AjaxRequest
         $user = new Auth\User();
         $user->logout();
 
-        $this->setResponse("redirect", ".");
+        $this->setResponse("redirect", "../");
         $this->status = "ok";
     }
 
@@ -121,7 +118,7 @@ class AuthorizationAjaxRequest extends AjaxRequest
         $user->authorize($username, $password1);
 
         $this->message = sprintf("Hello, %s! Thank you for registration.", $username);
-        $this->setResponse("redirect", "/");
+        $this->setResponse("redirect", "../");
         $this->status = "ok";
     }
 }

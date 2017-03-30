@@ -43,7 +43,12 @@ body{
 	position: relative;
 	left: 40%;
 }
-
+.modal-header form{
+	margin: 0;
+}
+.modal-body .col-sm-10{
+	width:75%
+}
 
 
 .form-signin {
