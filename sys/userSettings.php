@@ -9,11 +9,17 @@
         <h4 class="modal-title" id="titleLabel"><?=$user->login?>/Settings</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="userUpdate.php" method="POST">
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">E-mail</label>
+            <div class="col-sm-10">
+              <input type="email" name="email" class="form-control" id="email" placeholder="<?=$user->email?>" value="<?=$user->email?>">
+            </div>
+          </div>
           <div class="form-group">
             <label for="ipp" class="col-sm-2 control-label">Items per page</label>
             <div class="col-sm-10">
-              <input type="text" name="ipp" class="form-control" id="ipp" placeholder="IPP">
+              <input type="text" name="ipp" class="form-control" id="ipp" placeholder="IPP" value="<?=$user->ipp?>">
             </div>
           </div>
       </div>
