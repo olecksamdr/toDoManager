@@ -73,6 +73,8 @@ class User {
         switch ($n) {
             case 'ipp' :
                 return $this->_data ['ipp'];
+            case 'email' :
+                return $this->_data ['email'];
             default :
                 return !isset($this->_data [$n]) ? false : $this->_data [$n];
         }
