@@ -3,14 +3,19 @@
   $task = $tasks->getTasksFromList($_GET['listId']);
   while ($assocTasksArray = $task->fetch()) { 
     $isActive = $tasks->showIsActive($assocTasksArray['id']);
-  $completion = ($tasks->isCompleted($assocTasksArray['id'])) ? 'taskCompleted': 'taskNotCompleted';
-  $description = ($assocTasksArray['description']) ? nl2br($assocTasksArray['description']) :'This tasks haven`t description';
+    $completion = ($tasks->isCompleted($assocTasksArray['id'])) ? 'taskCompleted': 'taskNotCompleted';
+    $description = ($assocTasksArray['description']) ? nl2br($assocTasksArray['description']) :'This tasks haven`t description';
+    if ($assocTasksArray['completed'] === '1') {
+      $status = 'Completed';
+    } else {
+      $status = 'DeadLine: '.$tasks->showExpiredTime($assocTasksArray['id']);
+    }
   ?>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
           <span class="<?=$isActive?>"><?= $assocTasksArray['title']?></span> 
-          [DeadLine: <?= $tasks->showExpiredTime($assocTasksArray['id'])?>]
+          [<?=$status?>]
           <a href="actionsTask.php?act=taskCompleted&taskId=<?=$assocTasksArray['id']?>" class="<?=$completion?>" title="Task <?=$assocTasksArray['title']?>">
           <span class="glyphicon glyphicon-ok ok" aria-hidden="true"></span></a>
         </h3>

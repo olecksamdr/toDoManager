@@ -17,7 +17,9 @@ require_once 'classes/auth.class.php';
 require_once 'classes/user.class.php';
 
 
-date_default_timezone_set("Europe/Helsinki");
+date_default_timezone_set("Europe/Kiev");
+
+$timeNow = date('Y-m-d');
 
 //trying connect to DB with cathcing errors
 try {
