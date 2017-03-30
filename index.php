@@ -34,7 +34,7 @@
     	<button class="btn btn-large btn-primary" type="submit">Sign in</button>
     	
     	<div class="alert alert-info" style="margin-top:15px;">
-    	    <p>Not have an account? <a href="/userCreate.php">Register it.</a>
+    	    <p>Not have an account? <a href="userCreate.php">Register it.</a>
     	</div>
     </form>
 

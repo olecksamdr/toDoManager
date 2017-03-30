@@ -4,8 +4,7 @@ if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
     session_id($_COOKIE['sid']);
 }
-session_start();
-require_once 'sys/classes/Auth.class.php';
+require_once 'sys/init.php';
 
 ?><!DOCTYPE html>
 <html>
@@ -21,7 +20,7 @@ require_once 'sys/classes/Auth.class.php';
 
     <div class="container">
 
-      <?php if (Auth\User::isAuthorized()): ?>
+      <?php if (userAuth::isAuthorized()): ?>
     
       <h1>Your are already registered!</h1>
 

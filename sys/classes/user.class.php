@@ -13,16 +13,9 @@ class User {
             $this->_user_init($id_or_arrayToCache);
         }
     }
-	 /**
-     * Return user data at fields
-     * @param $fields
-     * @return array
-     */
     function getCustomData($fields = array()){
         $data = array();
-        // ключи, которые будут переданы обязательно
         $default = array('id');
-        // ключи, которые будут исключены
         $skip = array('password');
         $options = array_merge($default, $fields);
 
@@ -42,11 +35,11 @@ class User {
     }
 
     protected function _usersFromCache($get_users_by_id){
-        static $cache = array(); // кэш пользователей
+        static $cache = array();
         $get_users_by_id = array_unique((array)$get_users_by_id);
 
-        $users_from_mysql = array(); // пользователи, которые будут запрашиваться из базы (нет в кэше)
-        $users_return = array(); // пользователи, которые будут возвращены
+        $users_from_mysql = array();
+        $users_return = array();
 
         foreach ($get_users_by_id AS $id_user) {
             if (array_key_exists($id_user, $cache))
