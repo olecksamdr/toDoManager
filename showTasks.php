@@ -4,13 +4,14 @@
   while ($assocTasksArray = $task->fetch()) { 
     $isActive = $tasks->showIsActive($assocTasksArray['id']);
   $completion = ($tasks->isCompleted($assocTasksArray['id'])) ? 'taskCompleted': 'taskNotCompleted';
+  $description = ($assocTasksArray['description']) ? nl2br($assocTasksArray['description']) :'This tasks haven`t description';
   ?>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
           <span class="<?=$isActive?>"><?= $assocTasksArray['title']?></span> 
           [DeadLine: <?= $tasks->showExpiredTime($assocTasksArray['id'])?>]
-          <a href="actionsTask.php?act=taskCompleted&taskId=<?=$assocTasksArray['id']?>" class="<?=$completion?>" title="Task <?= $assocTasksArray['title'] ?>">
+          <a href="actionsTask.php?act=taskCompleted&taskId=<?=$assocTasksArray['id']?>" class="<?=$completion?>" title="Task <?=$assocTasksArray['title']?>">
           <span class="glyphicon glyphicon-ok ok" aria-hidden="true"></span></a>
         </h3>
         <div class="actions">
@@ -20,7 +21,7 @@
 	      </div>
       </div>
     <div class="panel-body">
-	   <?= nl2br($assocTasksArray['description'])?>
+	   <?=$description?>
     </div>
     </div>
   <?php } ?>
