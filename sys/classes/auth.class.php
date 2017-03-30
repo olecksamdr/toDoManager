@@ -1,8 +1,6 @@
 <?php
 
-namespace Auth;
-
-class User {
+class userAuth {
     private $id;
     private $login;
     private $db;
@@ -153,8 +151,7 @@ class User {
         return $result;
     }
 
-    public function connectdb($db_name, $db_user, $db_pass, $db_host = "localhost")
-    {
+    public function connectdb($db_name, $db_user, $db_pass, $db_host = "localhost"){
         try {
             $this->db = new \pdo("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
         } catch (\pdoexception $e) {

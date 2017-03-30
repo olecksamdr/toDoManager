@@ -40,7 +40,7 @@ class AuthorizationAjaxRequest extends AjaxRequest {
             return;
         }
 
-        $user = new Auth\User();
+        $user = new userAuth();
         $auth_result = $user->authorize($username, $password, $remember);
 
         if (!$auth_result) {
@@ -64,10 +64,10 @@ class AuthorizationAjaxRequest extends AjaxRequest {
 
         setcookie("sid", "");
 
-        $user = new Auth\User();
+        $user = new userAuth();
         $user->logout();
 
-        $this->setResponse("redirect", "../");
+        $this->setResponse("redirect", ".");
         $this->status = "ok";
     }
 
@@ -107,7 +107,7 @@ class AuthorizationAjaxRequest extends AjaxRequest {
             return;
         }
 
-        $user = new Auth\User();
+        $user = new userAuth();
 
         try {
             $new_user_id = $user->create($username, $password1);
