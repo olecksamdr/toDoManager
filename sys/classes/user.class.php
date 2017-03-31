@@ -1,5 +1,6 @@
 <?php
 class User {
+    protected $_update = array();
     protected $_data = array();
     protected $db;
     function __construct($id_or_arrayToCache = false){
@@ -69,7 +70,7 @@ class User {
         return $users_return;
     }
 
-    function __get($n) {
+    function __get($n){
         switch ($n) {
             case 'ipp' :
                 return $this->_data ['ipp'];
@@ -78,6 +79,30 @@ class User {
             default :
                 return !isset($this->_data [$n]) ? false : $this->_data [$n];
         }
+    }
+    public function __set($n, $v){
+        if (empty($this->_data ['id']))
+            return;
+
+        if (isset($this->_data [$n])) {
+            $this->_data [$n] = $v;
+            $this->_update [$n] = $v;
+        } else {
+            trigger_error(__('Поле "%s" не существует', $n));
+        }
+    }
+    public function save_data(){
+        if ($this->_update) {
+            $sql = array();
+            foreach ($this->_update as $key => $value) {
+                $sql[] = "`" . $key . "` = " . DB::connect()->quote($value);
+            }
+            DB::connect()->query("UPDATE `users` SET " . implode(', ', $sql) . " WHERE `id` = '" . $this->_data ['id'] . "' LIMIT 1");
+            $this->_update = array();
+        }
+    }
+    function __destruct(){
+        $this->save_data();
     }
 }
 ?>

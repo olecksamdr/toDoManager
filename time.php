@@ -1,7 +1,9 @@
 <?php
 require_once 'sys/init.php';
-$user = new User(1);
-var_dump($user->login);
+// $user = new User(2);
+
+// $user->chatId = 4564567;
+// var_dump($user->login);
 
 // require_once 'sys/pnation.php';
 
