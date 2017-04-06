@@ -88,7 +88,7 @@ class User {
             $this->_data [$n] = $v;
             $this->_update [$n] = $v;
         } else {
-            trigger_error(__('Поле "%s" не существует', $n));
+            trigger_error(__('Field "%s" are not exist', $n));
         }
     }
     public function save_data(){
