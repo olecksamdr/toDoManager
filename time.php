@@ -1,5 +1,8 @@
 <?php
 require_once 'sys/init.php';
+require_once 'sys/classes/mail.class.php';
+
+// Mail::sendOfMail('cool.ksandr2013@gmail.com', 'Test', 'It`s test message');
 // $user = new User(2);
 
 // $user->chatId = 4564567;

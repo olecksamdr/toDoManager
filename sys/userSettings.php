@@ -16,6 +16,28 @@
               <input type="email" name="email" class="form-control" id="email" placeholder="<?=$user->email?>" value="<?=$user->email?>">
             </div>
           </div>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="eNotifs" autocomplete="off" value="1" checked> E-mail notifications ON
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="eNotifs" autocomplete="off" value="0"> E-mail notifications OFF
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="chatId" class="col-sm-2 control-label">Telegram chat ID</label>
+            <div class="col-sm-10">
+              <input type="text" name="chatId" class="form-control" id="chatId" placeholder="<?=$user->chatId?>" value="<?=$user->chatId?>">
+            </div>
+          </div>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="tNotifs" autocomplete="off" value="1" checked> Telegram notifications ON
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="tNotifs" autocomplete="off" value="0"> Telegram notifications OFF
+            </label>
+          </div>
           <div class="form-group">
             <label for="ipp" class="col-sm-2 control-label">Items per page</label>
             <div class="col-sm-10">

@@ -15,6 +15,7 @@ require_once "classes/task.class.php";
 require_once "classes/telegram.class.php";
 require_once 'classes/auth.class.php';
 require_once 'classes/user.class.php';
+require_once 'classes/mail.class.php';
 
 
 date_default_timezone_set("Europe/Kiev");
