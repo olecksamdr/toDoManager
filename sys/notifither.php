@@ -11,7 +11,12 @@ while($taskToNotif = $allTaskToSender->fetch()){
     	$sender->sendMessage($u->chatId, $message);
 	}
 	if ($u->emailNotifs) {
-		Mail::sendOfMail($u->email, 'Task overduer', $message);
+		try {
+			Mail::sendOfMail($u->email, 'Task overduer', $message);
+		} catch (Exception $e) {
+			
+		}
+		
 	}
 }
 ?>
