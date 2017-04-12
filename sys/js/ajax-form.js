@@ -175,7 +175,7 @@
                     }
                 } else {
                     var $errField = $form.find('[name|="' + data.code + '"]');
-                    $mainErrorContainer.html(data.message).show();
+                    $mainErrorContainer.setAttribute(style, display: block);
                     $errField.focus();
                 }
             }

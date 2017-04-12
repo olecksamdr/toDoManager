@@ -16,6 +16,9 @@
               <input type="email" name="email" class="form-control" id="email" placeholder="<?=$user->email?>" value="<?=$user->email?>">
             </div>
           </div>
+          <?php if(!$user->email): ?>
+            If you wanna turn on email notifications, you need enter your correct e-mail
+          <? endif; ?>
           <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
               <input type="radio" name="eNotifs" autocomplete="off" value="1" checked> E-mail notifications ON
@@ -30,6 +33,9 @@
               <input type="text" name="chatId" class="form-control" id="chatId" placeholder="<?=$user->chatId?>" value="<?=$user->chatId?>">
             </div>
           </div>
+<!--            --><?php //if(!$user->chatId || $user->chatId === 1): ?>
+<!--                If you wanna turn on telegram notifications, you need enter your correct chat ID-->
+<!--            --><?// endif; ?>
           <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
               <input type="radio" name="tNotifs" autocomplete="off" value="1" checked> Telegram notifications ON

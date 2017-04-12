@@ -62,9 +62,7 @@
 	    <input required="required" type="text" name="title" class="form-control" placeholder="Task caption" value="<?= $task['title']?>">
 	  </div>
 	  <div class="form-group">
-	    <textarea name="description" class="form-control" rows="3" placeholder="Task description" >
-	    	<?= $task['description']?>
-	    </textarea>
+	    <textarea name="description" class="form-control" rows="3" placeholder="Task description" ><?=$task['description']?></textarea>
 	  </div>
 	  <div class="form-group">
 		<input required="required" type="date" name="expiredBy" class="form-control" value="<?= $task['expiredBy']?>">
